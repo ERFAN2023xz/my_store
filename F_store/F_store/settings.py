@@ -43,7 +43,7 @@ ROOT_URLCONF = 'F_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["template"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,6 +106,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_URLS = ['static/']
+STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
