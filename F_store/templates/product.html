@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br><br>
+<div class="container">
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{ product.picture.url }}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                {% if product.is_sale %}
+
+                <p class="card-text"> 💵 قیمت اصلی: <strike>{{ product.price }} تومان  </strike> <br> 💵🔥 قیمت استثنایی: {{ product.sale_price }} تومان  </p>
+
+                {% else %}
+                <p class="card-text"> 💵 قیمت: {{ product.price }} تومان  </p>
+                {% endif %}
+                <br><br>
+                <button class='btn btn-primary' type='button' value='{{ product.id }}' id='add-cart'>اضافه کردن به سبد خرید</button>
+                <a href="{% url 'home' %}" class='btn btn-primary'>بازگشت به صفحه اصلی</a>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+<br><br><br>
+<script>
+$(document).on('click', '#add-cart', function(e){
+  e.preventDefault();
+  $.ajax({
+    type: 'POST',
+    url: '{% url 'cart_add' %}',
+    date:{
+      product_id: $('#add-cart').val(),
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      action:'post'
+    },
+
+    success: function(json){
+      console.log(json)
+    },
+
+    error: function(xhr, errmsg, err){
+    }
+  })
+})
+</script>
+{% endblock %}
