@@ -41,18 +41,15 @@ def logout_user(request):
 def signup_user(request):
     form = SignUpForm()
     if request.method == "POST":
-        form = SignupForm(request.POST)
-        if form.is_valid:
+        form = SignUpForm(request.POST)
+        if form.is_valid():
             form.save()
-            username = form.cleaned_date['username']
-            password1 = form.cleaned_date['password1']
+            username = form.cleaned_data['username']
+            password1 = form.cleaned_data['password1']
             user = authenticate(request, username = username, password = password1)
             login(request, user)
             messages.success(request, ('اکانت شما ساخته شد'))
             return redirect("home")
-        else:
-            messages.success(request, ('مشکلی در ثبت نام شما وجود دارد'))
-            return redirect("signup")
     else:
         return render(request, 'signup.html', {'form':form})
 

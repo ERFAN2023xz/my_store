@@ -22,7 +22,7 @@
                                 <li><a class="dropdown-item" href="{% url 'category' 'گوشی اپل' %}">گوشی های اپل</a></li>
                                 <li><a class="dropdown-item" href="{% url 'category' 'گوشی سامسونگ' %}">گوشی های سامسونگ</a></li>
                                 <li><a class="dropdown-item" href="{% url 'category' 'گوشی شیائومی' %}">گوشی های شیائومی</a></li>
-                                <li><a class="dropdown-item" href="{% url 'category' 'سایر برند' %}">سایر برند ها</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'سایر برند ها ' %}">سایر برند ها</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -30,7 +30,7 @@
                         <a href="{% url 'cart_summary' %}" class="btn btn-outline-dark"> 
                             <i class="bi-cart-fill me-1"></i>
                             سبد خرید
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>   
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>   
                         </a>
                     </form>
                 </div>
